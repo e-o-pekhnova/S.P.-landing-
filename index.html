@@ -125,11 +125,27 @@
                         </li>
                     </ul>
                 </form>
-                <p2 id="total-price">Сумма: 0 рублей</p2>
+                <p id="total-price">Сумма: 0 рублей</p>
+                <script>
+                    const checkboxes = document.querySelectorAll('input[name="services"]');
+                    const totalPriceElement = document.getElementById('total-price');
+                
+                    checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', () => {
+                        let totalPrice = 0;
+                        checkboxes.forEach(checkbox => {
+                        if (checkbox.checked) {
+                            totalPrice += parseInt(checkbox.getAttribute('data-price'));
+                        }
+                        });
+                        totalPriceElement.textContent = `Сумма: ${totalPrice} рублей`;
+                    });
+                    });
+                </script>
             </section>
 
             <section>
-                <h3>Отзывы клиентов</h3>
+                <h2>Отзывы клиентов</h2>
 
                 <p><b>Отзыв 1</b></p>
                 <figure> <img src="images/5.png"
